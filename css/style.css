@@ -10,7 +10,15 @@
 	--color-notification: #8edafc;
     --background: linear-gradient(180deg, #009688 18.55%, #D9DBD5 18.56%);
 }
-
+.card-image{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+img{
+    width: 100%;
+    display: block;
+}
 body{
     font-family: 'Lato', sans-serif;
 }
@@ -35,9 +43,24 @@ body{
 .contattiEl{
     height: calc(100% - 160px);
 }
+.person-card {
+    height: 50px;
+}
 .notify{
 background-color: var(--color-notification);
 height: 70px;
+}
+.notify > div{
+    width: 40px;
+    height: 40px;
+} 
+.last-mex{
+    font-size: 0.6em;
+    color: var(--color-text-grey);
+}
+a{
+    text-decoration: underline;
+    color: var(--color-dark-grey);
 }
 .search{
     height: 40px;
