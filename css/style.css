@@ -29,14 +29,25 @@ body{
    background-color:#eaeaea; 
    height:min-content;
 }
+.h-header{
+    height: 50px;
+}
+.contattiEl{
+    height: calc(100% - 160px);
+}
 .notify{
 background-color: var(--color-notification);
+height: 70px;
+}
+.search{
+    height: 40px;
 }
 .h0{
     height: 0;
 }
 .chat{
     background-image: url(../img/mine.jpg);
+    height: calc(100% - 100px);
 }
 .sent{
 
