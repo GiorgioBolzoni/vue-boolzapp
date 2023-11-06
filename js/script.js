@@ -1,5 +1,5 @@
 const dt = luxon.DateTime;
-dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT);
+
 // Importa l'array con il nome corretto
 import { contactList } from './data.js';
 
@@ -42,7 +42,7 @@ createApp({
         },
         newMessage(){
             const newMsg = {
-                date: new Date(),
+                date: dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS),
                 message: this.message,
                 status: 'sent'
             };
@@ -50,9 +50,9 @@ createApp({
             this.message='';
             setTimeout(()=>{
                 const newMsg = {
-                    date: new Date(),
-                message: this.resp,
-                status: 'received'
+                    date: dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS),
+                    message: this.resp,
+                    status: 'received'
                 };
                 this.activeContact.messages.push(newMsg);
             }, 1000)

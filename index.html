@@ -53,7 +53,7 @@
                     <!-- lista contatti -->
                     <div class="d-flex flex-grow-1 overflow-y-auto contattiEl overflow-x-hidden">
                         <div class="row">
-                            <div class="col-12 py-2 contact d-flex justify-content-between" :class="{'active': index === activeContactIndex}" v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(contact.id)">
+                            <div class="col-12 py-2 contact d-flex justify-content-between align-content-center align-items-center" :class="{'active': index === activeContactIndex}" v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(contact.id)">
                                 <div class="d-flex">
                                     <img :src="contact.avatar" :alt="contact.name" class="avatar ms-2">
                                     <div class="ms-2">
@@ -61,7 +61,7 @@
                                         <small>{{getLastMessage(contact.id)}}</small>
                                     </div>
                                 </div>
-                            <div>
+                            <div class="w-25 mx-1 text-end">
                                 <small>{{getLastAccess(contact.id)}}</small>
                             </div>
                             </div>
