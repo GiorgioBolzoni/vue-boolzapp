@@ -47,8 +47,8 @@
                     </div>
                     <!-- search -->
                     <div class="p-2 bg-beige d-flex align-items-center input-group" id="search" >
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <input type="text" name="search" class="form-control" placeholder="Search contacts">
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass" @click="filterContacts()" style="cursor: pointer;"></i></span>
+                        <input type="text" name="search" class="form-control" v-model="filterContact" @keyup.enter="filterContacts()" placeholder="Search contacts">
                     </div>
                     <!-- lista contatti -->
                     <div class="d-flex flex-grow-1 overflow-y-auto contattiEl overflow-x-hidden">

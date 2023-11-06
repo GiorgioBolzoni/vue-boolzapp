@@ -12,7 +12,8 @@ createApp({
             activeContactIndex: 0,
             searchText: '',
             message: '',
-            resp: 'ok'
+            resp: 'ok',
+            filterContact: '',
         };
     },
     methods: {
@@ -56,7 +57,18 @@ createApp({
                 };
                 this.activeContact.messages.push(newMsg);
             }, 1000)
-        }
+        },
+        filterContacts() {
+            // Filtra i contatti in base al testo di ricerca
+            if (this.filterContact.trim() === '') {
+                // Se il campo di ricerca è vuoto, mostra tutti i contatti
+                this.contacts = contactList;
+            } else {
+                this.contacts = contactList.filter(contact => {
+                    return contact.name.toLowerCase().includes(this.filterContact.toLowerCase());
+                });
+            }
+        },
     },
     computed: {
         activeContact(){
