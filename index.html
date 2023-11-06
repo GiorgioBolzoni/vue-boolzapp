@@ -25,7 +25,7 @@
                 <div class="col-12 px-0 col-md-4 contacts">
                     <div class="px-2 bg-beige d-flex align-items-center h-header justify-content-between">
                         <div class="d-flex align-items-center">
-                            <div class="card-image rounded-circle overflow-hidden">
+                            <div class="card-image rounded-circle overflow-hidden avatar">
                                 <img src="img/avatar_io.jpg" alt="me">
                             </div>
                             <span class="ms-2">Sofia</span>
@@ -51,34 +51,52 @@
                         <input type="text" name="search" class="form-control" placeholder="Search contacts">
                     </div>
                     <!-- lista contatti -->
-                    <div class="d-flex flex-grow-1 overflow-y-auto contattiEl">
+                    <div class="d-flex flex-grow-1 overflow-y-auto contattiEl overflow-x-hidden">
                         <div class="row">
-                            <div class="col-12 py-2 contact d-flex justify-content-between" :class="{'active': index === activeContactIndex}" v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact()">
+                            <div class="col-12 py-2 contact d-flex justify-content-between" :class="{'active': index === activeContactIndex}" v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(contact.id)">
                                 <div class="d-flex">
                                     <img :src="contact.avatar" :alt="contact.name" class="avatar ms-2">
                                     <div class="ms-2">
-                                    <strong>{{contact.name}}</strong><br>
-                                    <small>{{contact.messages[contact.messages.length -1].message}}</small>
+                                        <strong>{{contact.name}}</strong><br>
+                                        <small>{{getLastMessage(contact.id)}}</small>
+                                    </div>
                                 </div>
-                                </div>
+                            <div>
+                                <small>{{getLastAccess(contact.id)}}</small>
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
+            </div>
                 <div class="col-12 px-0 col-md-8 border-start">
-                    <div class="px-2 bg-beige d-flex align-items-center h-header">
+                    <div class="px-2 bg-beige d-flex align-items-center h-header justify-content-between">
                         <div class="d-flex">
                             <img :src="contacts[activeContactIndex].avatar" :alt="contacts[activeContactIndex].name" class="avatar m-2">
                             <div class="m-2">
-                                <strong>{{contacts[activeContactIndex].name}}</strong><br>
+                                <strong>{{activeContact.name}}</strong><br>
                                     <small>Ultimo accesso {{contacts[activeContactIndex].messages[contacts[activeContactIndex].messages.length -1].date}}</small>
                             </div>
                         </div>
-                        
+                        <div class="icons">
+                            <i class="fa-solid fa-arrow-left me-3" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-magnifying-glass me-3" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-link me-3" style="cursor: pointer;"></i>
+                            <i class="fa-solid fa-ellipsis-vertical" style="cursor: pointer;"></i>
+                        </div>
                     </div>
-                    
-                        <div class="px-2 chat d-flex align-items-center">chat</div>
-                        <div class="px-2 bg-beige d-flex align-items-center h-header">scrivi qui</div>
+                    <!-- chat -->
+                    <div class="col-12 overflow-y-auto flex-grow-1 chat">
+                        <div class="d-flex py-3" v-for="(msg, index) in activeContact.messages" :key="index">
+                            <div class="msg" :class="msg.status">{{msg.message}}</div>
+                        </div>
+                    </div>
+                    <!-- scrivi qui -->
+                    <div class="px-2 bg-beige d-flex align-items-center h-header">
+                        <i class="fa-regular fa-face-smile me-3" style="cursor: pointer;"></i>
+                        <input type="text" class="form-control me-3" placeholder="Send a message" v-model="message" @keyup.enter="newMessage()">
+                        <i class="fa-regular fa-paper-plane" style="cursor: pointer;" @click="newMessage()"></i>
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -30,7 +30,45 @@ createApp({
             } else {
                 return 'Non ci sono messaggi';
             }
+        },
+        getLastAccess(id){
+            const contact = this.contacts.find((contact) => contact.id === id);
+            const len = contact.messages.length;
+            if (len > 0) {
+                return contact.messages[len - 1].date;
+            } else {
+                return 'Unknown';
+            }
+        },
+        newMessage(){
+            const newMsg = {
+                date: new Date(),
+                message: this.message,
+                status: 'sent'
+            };
+            this.activeContact.messages.push(newMsg);
+            this.message='';
+            setTimeout(()=>{
+                const newMsg = {
+                    date: new Date(),
+                message: this.resp,
+                status: 'received'
+                };
+                this.activeContact.messages.push(newMsg);
+            }, 1000)
         }
     },
-    computed: {}
+    computed: {
+        activeContact(){
+            return this.contacts[this.activeContactIndex];
+        },
+        lastDate(){
+            const len = contact.messages.length;
+            if (len > 0) {
+                return this.activeContact.messages[len - 1].date;
+            } else {
+                return 'Unknown';
+            }
+        }
+    }
 }).mount('#app');
